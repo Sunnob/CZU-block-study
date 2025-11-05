@@ -1,3 +1,5 @@
+/* style.css - updated to be progressive-enhancement friendly */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -19,8 +21,8 @@ header {
 }
 
 header h1 {
-  font-size: 2.5em;
-  margin-bottom: 15px;
+  font-size: 2.2em;
+  margin-bottom: 12px;
 }
 
 .buttons button {
@@ -39,6 +41,7 @@ header h1 {
   background: #777;
 }
 
+/* SECTION BASE - visible by default (so without JS content is shown) */
 section {
   max-width: 900px;
   margin: 50px auto;
@@ -47,7 +50,9 @@ section {
   border-radius: 12px;
   background: white;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s, opacity 0.6s ease-in-out;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+  /* ensure stacking context for transitions */
+  will-change: opacity, transform;
 }
 
 section:hover {
@@ -70,18 +75,19 @@ section img {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.25s;
 }
 
 .hide-btn:hover {
   background: #a00;
 }
 
-/* Hidden state for smooth fade */
+/* HIDDEN state (smooth fade & shrink) */
 .hidden {
   opacity: 0;
-  transform: scale(0.95);
+  transform: scale(0.96) translateY(8px);
   pointer-events: none;
+  /* keep element in layout while hiding (no display:none) */
 }
 
 /* Dark theme */
@@ -96,21 +102,24 @@ body.dark header {
 
 body.dark section {
   background: #1e1e1e;
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.04);
 }
 
 body.dark footer {
   background: #111;
+  color: #ddd;
 }
 
-/* Fade-in animation */
-.fade-in {
+/* JS-enabled animation: when JS runs, script will add class 'js' to <body>.
+   .js .pre-animate sets initial hidden state for sections so IntersectionObserver can animate them in.
+   Without JS these rules do nothing (progressive enhancement). */
+.js .pre-animate {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.8s ease-in-out;
+  transform: translateY(18px);
+  transition: all 0.8s ease;
 }
 
-.fade-in.visible {
+.js .pre-animate.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -118,7 +127,7 @@ body.dark footer {
 /* Responsive */
 @media (max-width: 700px) {
   header h1 {
-    font-size: 1.8em;
+    font-size: 1.6em;
   }
 
   section {
@@ -130,3 +139,40 @@ body.dark footer {
     font-size: 0.9em;
   }
 }
+
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-btn {
+  padding: 10px 20px;
+  background: #555;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-btn:hover {
+  background: #777;
+}
+
+/* Dark theme */
+body.dark footer {
+  background: #111;
+  color: #ddd;
+}
+
