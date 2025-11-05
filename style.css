@@ -1,0 +1,119 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+header {
+  text-align: center;
+  padding: 40px 20px;
+  background: #222;
+  color: white;
+}
+
+header h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+.buttons button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 1em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #555;
+  color: white;
+  transition: background 0.3s;
+}
+
+.buttons button:hover {
+  background: #777;
+}
+
+section {
+  max-width: 900px;
+  margin: 50px auto;
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s;
+}
+
+section:hover {
+  transform: scale(1.02);
+}
+
+section img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  margin: 20px 0;
+  transition: opacity 0.4s;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #222;
+  color: white;
+  font-size: 0.9em;
+}
+
+/* Dark theme */
+body.dark {
+  background-color: #121212;
+  color: #f4f4f4;
+}
+
+body.dark header {
+  background: #111;
+}
+
+body.dark section {
+  background: #1e1e1e;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+body.dark footer {
+  background: #111;
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease-in-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  header h1 {
+    font-size: 1.8em;
+  }
+
+  section {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .buttons button {
+    font-size: 0.9em;
+  }
+}
