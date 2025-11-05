@@ -4,17 +4,17 @@ themeButton.addEventListener("click", () => {
   document.body.classList.toggle("dark");
 });
 
-// Hide/show images
-const toggleImagesButton = document.getElementById("toggleImagesButton");
-let imagesVisible = true;
+// Hide/show entire sections
+const toggleBlocksButton = document.getElementById("toggleImagesButton");
+let blocksVisible = true;
 
-toggleImagesButton.addEventListener("click", () => {
-  const images = document.querySelectorAll("section img");
-  imagesVisible = !imagesVisible;
-  images.forEach((img) => {
-    img.style.opacity = imagesVisible ? "1" : "0";
+toggleBlocksButton.addEventListener("click", () => {
+  const sections = document.querySelectorAll("section.car");
+  blocksVisible = !blocksVisible;
+  sections.forEach((section) => {
+    section.style.display = blocksVisible ? "block" : "none";
   });
-  toggleImagesButton.textContent = imagesVisible ? "Hide Images" : "Show Images";
+  toggleBlocksButton.textContent = blocksVisible ? "Hide Blocks" : "Show Blocks";
 });
 
 // Fade-in animation on scroll
@@ -36,7 +36,7 @@ fadeElements.forEach((el) => observer.observe(el));
 // Engine sound on hover
 const carImages = document.querySelectorAll("section img");
 
-// Ссылку можно заменить на любой другой короткий mp3
+// Ссылка на бесплатный звук двигателя
 const engineSound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_5b51c4cba9.mp3?filename=car-engine-7071.mp3");
 engineSound.volume = 0.4;
 
